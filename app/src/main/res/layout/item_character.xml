@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/ivCharacter"
+        app:layout_constraintBottom_toTopOf="@+id/tvCname"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvCname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/Name"
+        app:layout_constraintBottom_toTopOf="@+id/tvClevel"
+        app:layout_constraintStart_toStartOf="@+id/ivCharacter" />
+
+    <TextView
+        android:id="@+id/tvClevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/Lv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ivCharacter" />
+
+    <TextView
+        android:id="@+id/tvCcreation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Creation"
+        app:layout_constraintEnd_toStartOf="@+id/tvCstate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivCharacter"
+        app:layout_constraintTop_toBottomOf="@+id/tvCclass" />
+
+    <TextView
+        android:id="@+id/tvCstate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/State"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvCcreation"
+        app:layout_constraintTop_toBottomOf="@+id/tvCclass" />
+
+    <TextView
+        android:id="@+id/tvCclass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/Class"
+        app:layout_constraintEnd_toStartOf="@+id/tvCrace"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivCharacter"
+        app:layout_constraintTop_toTopOf="@+id/ivCharacter" />
+
+    <TextView
+        android:id="@+id/tvCrace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Race"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvCclass"
+        app:layout_constraintTop_toTopOf="@+id/ivCharacter" />
+
+    <TextView
+        android:id="@+id/tvCstrength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/STR"
+        app:layout_constraintEnd_toStartOf="@+id/tvCdexterity"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivCharacter"
+        app:layout_constraintTop_toBottomOf="@+id/tvCcreation" />
+
+    <TextView
+        android:id="@+id/tvCdexterity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/DEX"
+        app:layout_constraintEnd_toStartOf="@+id/tvCconstitution"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvCstrength"
+        app:layout_constraintTop_toBottomOf="@+id/tvCcreation" />
+
+    <TextView
+        android:id="@+id/tvCconstitution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/CON"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvCdexterity"
+        app:layout_constraintTop_toBottomOf="@+id/tvCcreation" />
+
+    <TextView
+        android:id="@+id/tvCintelligence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/INT"
+        app:layout_constraintEnd_toStartOf="@+id/tvCwisdom"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivCharacter"
+        app:layout_constraintTop_toBottomOf="@+id/tvCstrength" />
+
+    <TextView
+        android:id="@+id/tvCwisdom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/WIS"
+        app:layout_constraintEnd_toStartOf="@+id/tvCcharisma"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvCintelligence"
+        app:layout_constraintTop_toBottomOf="@+id/tvCstrength" />
+
+    <TextView
+        android:id="@+id/tvCcharisma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/CHA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvCwisdom"
+        app:layout_constraintTop_toBottomOf="@+id/tvCstrength" />
+</androidx.constraintlayout.widget.ConstraintLayout>
