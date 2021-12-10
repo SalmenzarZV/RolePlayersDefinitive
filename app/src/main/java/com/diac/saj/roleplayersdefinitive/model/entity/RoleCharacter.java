@@ -12,8 +12,14 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "character",
         indices = {@Index(value = "idclass"), @Index(value = "idrace")},
-        foreignKeys = {@ForeignKey(entity = Race.class, parentColumns = "id", childColumns = "idrace", onDelete = ForeignKey.CASCADE),
-                @ForeignKey(entity = RoleClass.class, parentColumns = "id", childColumns = "idclass", onDelete = ForeignKey.CASCADE)})
+        foreignKeys = { @ForeignKey(entity = Race.class,
+                                    parentColumns = "id",
+                                    childColumns = "idrace",
+                                    onDelete = ForeignKey.CASCADE),
+                        @ForeignKey(entity = RoleClass.class,
+                                    parentColumns = "id",
+                                    childColumns = "idclass",
+                                    onDelete = ForeignKey.CASCADE)})
 public class RoleCharacter implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
@@ -97,7 +103,7 @@ public class RoleCharacter implements Parcelable {
     };
 
     public boolean isValid(){
-        return level >0 && !(name.isEmpty() || creation.isEmpty() || state.isEmpty());
+        return level > 0 && !(name.isEmpty() || creation.isEmpty() || state.isEmpty());
     }
 
     @Override
@@ -106,16 +112,19 @@ public class RoleCharacter implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(Parcel parcel, int i) {//writeTipo
+        parcel.writeLong(id);
         parcel.writeString(name);
-        parcel.writeString(state);
-        parcel.writeString(creation);
         parcel.writeInt(level);
+        parcel.writeString(creation);
+        parcel.writeString(state);
         parcel.writeInt(strength);
         parcel.writeInt(dexterity);
         parcel.writeInt(constitution);
         parcel.writeInt(intelligence);
         parcel.writeInt(wisdom);
         parcel.writeInt(charisma);
+        parcel.writeLong(idrace);
+        parcel.writeLong(idclass);
     }
 }

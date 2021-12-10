@@ -18,12 +18,11 @@ import com.diac.saj.roleplayersdefinitive.view.activity.EditDeleteActivity;
 public class CharacterViewHolder extends RecyclerView.ViewHolder {
 
     public RoleCharacter character;
+
     public TextView tvCname, tvClevel, tvCcreation, tvCstate, tvCclass, tvCrace, tvCstrength, tvCdexterity,
             tvCconstitution, tvCintelligence,tvCwisdom, tvCcharisma;
 
     public ImageView ivCharacter;
-    
-
 
     public CharacterViewHolder(@NonNull View itemView) {
         super(itemView);

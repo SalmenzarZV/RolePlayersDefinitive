@@ -1,5 +1,6 @@
 package com.diac.saj.roleplayersdefinitive.view.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 import com.diac.saj.roleplayersdefinitive.R;
@@ -52,6 +54,7 @@ public class EditDeleteActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (spEDclass.getSelectedItemPosition()) {
+                    //TODO OPTIMIZAR
                     case 0:
                         ivEDcharacter.setImageResource(R.drawable.ic_baseline_question_mark_24);
                         break;
@@ -156,13 +159,36 @@ public class EditDeleteActivity extends AppCompatActivity {
         btEdit.setOnClickListener(view -> {
             RoleCharacter roleCharacter = getCharacter();
             if (roleCharacter.isValid()){
-                cvm.updateCharacter(roleCharacter);
+                cvm.updateCharacterQuery(this.roleCharacter.id, roleCharacter.idclass,
+                                         roleCharacter.idrace, roleCharacter.state,
+                                         roleCharacter.creation,roleCharacter.strength,
+                                         roleCharacter.dexterity,roleCharacter.constitution,
+                                         roleCharacter.intelligence,roleCharacter.wisdom,
+                                         roleCharacter.charisma);
+                Toast.makeText(this, "Updated Character", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                Toast.makeText(this, "not valid fields", Toast.LENGTH_SHORT).show();
             }
         });
 
         btDelete.setOnClickListener(view -> {
-            cvm.deleteCharacters(roleCharacter);
+            RoleCharacter roleCharacter = getCharacter();
+            alert(cvm, roleCharacter);
         });
+    }
+
+    private void alert(CharacterViewModel cvm, RoleCharacter roleCharacter) {
+        AlertDialog.Builder builder  = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure?")
+                .setMessage("Are you sure do you want to delete this character?")
+                .setNegativeButton(android.R.string.no, (dialog, which) -> {})
+                .setPositiveButton( android.R.string.ok, (dialog, which) -> {
+                    cvm.deleteCharacters(roleCharacter);
+                    Toast.makeText(this, "deleted", Toast.LENGTH_SHORT).show();
+                    finish();
+                });
+        builder.create().show();
     }
 
 

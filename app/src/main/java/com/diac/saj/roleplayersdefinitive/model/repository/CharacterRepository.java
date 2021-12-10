@@ -17,6 +17,7 @@ import com.diac.saj.roleplayersdefinitive.model.room.CharacterDatabase;
 import java.util.List;
 
 public class CharacterRepository {
+
     private final CharacterDao dao;
     private LiveData<List<CharacterCR>> allCharacter;
     private LiveData<List<RoleCharacter>> liveCharacters;
@@ -202,6 +203,13 @@ public class CharacterRepository {
     public void deleteCharacters(RoleCharacter... characters) {
         Runnable r = () -> {
             dao.deleteCharacters(characters);
+        };
+        new Thread(r).start();
+    }
+
+    public void updateCharacterQuery(long id, long idclass, long idrace, String state, String creation, int strenght, int dexterity, int constitution, int intelligence, int wisdom, int charisma){
+        Runnable r = () -> {
+            dao.updateCharacterQuery(id, idclass, idrace, state, creation, strenght, dexterity, constitution, intelligence, wisdom, charisma);
         };
         new Thread(r).start();
     }

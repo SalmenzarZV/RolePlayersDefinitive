@@ -53,4 +53,8 @@ public class CharacterViewModel extends AndroidViewModel {
     public MutableLiveData<List<Long>> getInsertResults() {
         return repository.getInsertResults();
     }
+
+    public void updateCharacterQuery(long id, long idclass, long idrace, String state, String creation, int strenght, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+        repository.updateCharacterQuery(id, idclass, idrace, state, creation, strenght, dexterity, constitution, intelligence, wisdom, charisma);
+    }
 }

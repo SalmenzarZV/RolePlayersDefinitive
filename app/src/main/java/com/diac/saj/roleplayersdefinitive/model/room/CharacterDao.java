@@ -80,5 +80,9 @@ public interface CharacterDao {
 
     @Query("select * from charclass where name = :name")
     RoleClass getClass(String name);
+
+    @Query("update character SET idclass = :idclass, idrace = :idrace, state = :state, creation = :creation, strength = :strenght, dexterity = :dexterity, constitution = :constitution, intelligence = :intelligence, wisdom = :wisdom, charisma = :charisma WHERE id = :id")
+    void updateCharacterQuery(long id, long idclass, long idrace, String state, String creation, int strenght,
+                         int dexterity, int constitution, int intelligence, int wisdom, int charisma);
 }
 

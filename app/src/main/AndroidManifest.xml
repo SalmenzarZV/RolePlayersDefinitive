@@ -11,10 +11,12 @@
         android:theme="@style/Theme.RolePlayersDefinitive">
         <activity
             android:name=".view.activity.EditDeleteActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".view.activity.AddActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".view.activity.CharacterActivity"
             android:exported="true">
