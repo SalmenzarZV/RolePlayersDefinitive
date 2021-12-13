@@ -61,7 +61,7 @@ public interface CharacterDao {
     LiveData<List<RoleClass>> getClasses();
 
     @Query("select * from character where id = :id")
-    LiveData<RoleCharacter> getPokemon(long id);
+    LiveData<RoleCharacter> getCharacter(long id);
 
     @Query("select * from charrace where id = :id")
     LiveData<Race> getRace(long id);

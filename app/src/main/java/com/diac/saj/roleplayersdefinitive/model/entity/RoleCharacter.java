@@ -70,6 +70,11 @@ public class RoleCharacter implements Parcelable {
     @ColumnInfo(name = "charisma")
     public int charisma;
 
+    @ColumnInfo(name = "image")
+    public String image;
+
+
+
     public RoleCharacter(){
 
     }
@@ -88,6 +93,7 @@ public class RoleCharacter implements Parcelable {
         charisma = in.readInt();
         idrace = in.readLong();
         idclass = in.readLong();
+        image = in.readString();
     }
 
     public static final Creator<RoleCharacter> CREATOR = new Creator<RoleCharacter>() {
@@ -105,6 +111,8 @@ public class RoleCharacter implements Parcelable {
     public boolean isValid(){
         return level > 0 && !(name.isEmpty() || creation.isEmpty() || state.isEmpty());
     }
+
+
 
     @Override
     public int describeContents() {
@@ -126,5 +134,6 @@ public class RoleCharacter implements Parcelable {
         parcel.writeInt(charisma);
         parcel.writeLong(idrace);
         parcel.writeLong(idclass);
+        parcel.writeString(image);
     }
 }

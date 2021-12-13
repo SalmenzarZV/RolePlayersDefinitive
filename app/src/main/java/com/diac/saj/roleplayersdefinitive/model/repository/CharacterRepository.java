@@ -181,7 +181,7 @@ public class CharacterRepository {
 
     public LiveData<RoleCharacter> getCharacter(long id) {
         if(liveCharacter == null) {
-            liveCharacter = dao.getPokemon(id);
+            liveCharacter = dao.getCharacter(id);
         }
         return liveCharacter;
     }

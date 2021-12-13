@@ -26,4 +26,5 @@
     <string name="add">ADD</string>
     <string name="delete">DELETE</string>
     <string name="edit">EDIT</string>
+    <string name="logo">logo</string>
 </resources>

@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
 import com.diac.saj.roleplayersdefinitive.R;
 import com.diac.saj.roleplayersdefinitive.model.entity.Race;
 import com.diac.saj.roleplayersdefinitive.model.entity.RoleCharacter;
@@ -23,6 +25,9 @@ import com.diac.saj.roleplayersdefinitive.viewmodel.CharacterViewModel;
 import com.diac.saj.roleplayersdefinitive.viewmodel.ClassViewModel;
 import com.diac.saj.roleplayersdefinitive.viewmodel.RaceViewModel;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Calendar;
 
 public class EditDeleteActivity extends AppCompatActivity {
 
@@ -35,6 +40,8 @@ public class EditDeleteActivity extends AppCompatActivity {
 
     RoleCharacter roleCharacter;
 
+    TextInputLayout tfEDcreation, tfEDlevel, tfEDstrength, tfEDdexterity, tfEDconstitution,
+            tfEDintelligence, tfEDwisdom, tfEDcharisma;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,22 @@ public class EditDeleteActivity extends AppCompatActivity {
         itemFindView();
         itemSetters(roleCharacter);
         defineOnFocusListener();
+        setFieldsValidation();
+    }
+
+    private void setFieldsValidation() {
+        setCreationValidation();
+        setLvStatsValidation();
+    }
+
+    private void setLvStatsValidation() {
+        levelWatcher();
+        strengthWatcher();
+        dexterityWatcher();
+        constitutionWatcher();
+        intelligenceWatcher();
+        wisdomWatcher();
+        charismaWatcher();
     }
 
     private void defineOnFocusListener() {
@@ -108,7 +131,7 @@ public class EditDeleteActivity extends AppCompatActivity {
     }
 
     private void itemSetters(RoleCharacter roleCharacter) {
-        Log.v("jamaica", roleCharacter.level+"");
+        //Log.v("jamaica", roleCharacter.level+"");
         tietEDname.setText(roleCharacter.name);
         tietEDlevel.setText(roleCharacter.level+"");
         tietEDcreation.setText(roleCharacter.creation);
@@ -132,7 +155,7 @@ public class EditDeleteActivity extends AppCompatActivity {
                 roleClasses.add(0, roleClass);
                 ArrayAdapter<RoleClass> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, roleClasses);
                 spEDclass.setAdapter(adapter);
-                Log.v("jamaica", roleCharacter.id+"");
+                //Log.v("jamaica", roleCharacter.id+"");
                 spEDclass.setSelection((int) roleCharacter.idclass);
             }
         });
@@ -159,12 +182,18 @@ public class EditDeleteActivity extends AppCompatActivity {
         btEdit.setOnClickListener(view -> {
             RoleCharacter roleCharacter = getCharacter();
             if (roleCharacter.isValid()){
+                //Log.v("jamaica", this.roleCharacter.id+"//"+roleCharacter.name);
+                /*
                 cvm.updateCharacterQuery(this.roleCharacter.id, roleCharacter.idclass,
                                          roleCharacter.idrace, roleCharacter.state,
                                          roleCharacter.creation,roleCharacter.strength,
                                          roleCharacter.dexterity,roleCharacter.constitution,
                                          roleCharacter.intelligence,roleCharacter.wisdom,
                                          roleCharacter.charisma);
+
+                 */
+                cvm.deleteCharacters(this.roleCharacter);
+                cvm.insertCharacter(roleCharacter);
                 Toast.makeText(this, "Updated Character", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
@@ -208,6 +237,14 @@ public class EditDeleteActivity extends AppCompatActivity {
         ivEDcharacter = findViewById(R.id.ivEDcharacter);
         spEDclass = findViewById(R.id.spEDclass);
         spEDrace = findViewById(R.id.spEDrace);
+        tfEDcreation = findViewById(R.id.tfEDcreation);
+        tfEDlevel = findViewById(R.id.tfEDlevel);
+        tfEDstrength = findViewById(R.id.tfEDstrength);
+        tfEDdexterity = findViewById(R.id.tfEDdexterity);
+        tfEDconstitution = findViewById(R.id.tfEDconstitution);
+        tfEDintelligence = findViewById(R.id.tfEDintelligence);
+        tfEDwisdom = findViewById(R.id.tfEDwisdom);
+        tfEDcharisma = findViewById(R.id.tfEDcharisma);
     }
 
     private RoleCharacter getCharacter() {
@@ -256,4 +293,293 @@ public class EditDeleteActivity extends AppCompatActivity {
         return roleCharacter;
     }
 
+    private void setCreationValidation() {
+        tietEDcreation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                dateValidation();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+
+    public void dateValidation(){
+        String date = tietEDcreation.getText().toString();
+        if (date.length() != 0 && date.contains("/")){
+            String[] dateParts = date.split("/");
+            if (dateParts.length == 3){
+                int day, month, year;
+                day = Integer.parseInt(dateParts[0]);
+                month = Integer.parseInt(dateParts[1]);
+                year = Integer.parseInt(dateParts[2]);
+                if (isGoodDate(day, month, year)){
+                    tfEDcreation.setHelperText("Looks Good!");
+                } else {
+                    tfEDcreation.setError("Invalid date");
+                }
+            } else {
+                if(dateParts.length > 3){
+                    tfEDcreation.setError("Invalid Format (dd/mm/aaaa)");
+                } else {
+                    tfEDcreation.setHelperText("dd/mm/aaaa");
+                }
+            }
+        } else {
+            if (specialCharsDate(date)){
+                tfEDcreation.setError("Use only numbers and /");
+            } else {
+                tfEDcreation.setHelperText("dd/mm/aaaa");
+            }
+        }
+    }
+
+    private boolean isGoodDate(int day, int month, int year) {
+        int actualYear = Calendar.getInstance().get(Calendar.YEAR);
+
+
+        if (actualYear < year || year < 1974){
+            return false;
+        }
+        if (month < 13){
+            switch (month){
+                case 2: if (day > 28) return false;
+                    break;
+                case 1:case 3:case 5:case 7:case 8:case 10:case 12: if (day > 31) return false;
+                    break;
+
+                default: if (day > 30) return false;
+            }
+        } else
+            return false;
+
+
+        return true;
+    }
+
+    private boolean specialCharsDate(String str){
+        String valideChars = "1234567890/";
+        for (char c: str.toCharArray()) {
+            if (!valideChars.contains(Character.toString(c))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean specialCharsNumber(String str){
+        String valideChars = "1234567890";
+        for (char c: str.toCharArray()) {
+            if (!valideChars.contains(Character.toString(c))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void charismaWatcher() {
+        tietEDcharisma.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String field = tietEDcharisma.getText().toString();
+                if (!specialCharsNumber(field)){
+                    tfEDcharisma.setHelperText("Looks Good!");
+                } else {
+                    tfEDcharisma.setError("Insert > 0 Number");
+                }
+
+                if (field.length() == 0){
+                    tfEDcharisma.setHelperText("");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void wisdomWatcher() {
+        tietEDwisdom.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String field = tietEDwisdom.getText().toString();
+                if (!specialCharsNumber(field)){
+                    tfEDwisdom.setHelperText("Looks Good!");
+                } else {
+                    tfEDwisdom.setError("Insert > 0 Number");
+                }
+
+                if (field.length() == 0){
+                    tfEDwisdom.setHelperText("");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void intelligenceWatcher() {
+        tietEDintelligence.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String field = tietEDintelligence.getText().toString();
+                if (!specialCharsNumber(field)){
+                    tfEDintelligence.setHelperText("Looks Good!");
+                } else {
+                    tfEDintelligence.setError("Insert > 0 Number");
+                }
+
+                if (field.length() == 0){
+                    tfEDintelligence.setHelperText("");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void constitutionWatcher() {
+        tietEDconstitution.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String field = tietEDconstitution.getText().toString();
+                if (!specialCharsNumber(field)){
+                    tfEDconstitution.setHelperText("Looks Good!");
+                } else {
+                    tfEDconstitution.setError("Insert > 0 Number");
+                }
+
+                if (field.length() == 0){
+                    tfEDconstitution.setHelperText("");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void dexterityWatcher() {
+        tietEDdexterity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String field = tietEDdexterity.getText().toString();
+                if (!specialCharsNumber(field)){
+                    tfEDdexterity.setHelperText("Looks Good!");
+                } else {
+                    tfEDdexterity.setError("Insert > 0 Number");
+                }
+
+                if (field.length() == 0){
+                    tfEDdexterity.setHelperText("");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void strengthWatcher() {
+        tietEDstrength.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String field = tietEDstrength.getText().toString();
+                if (!specialCharsNumber(field)){
+                    tfEDstrength.setHelperText("Looks Good!");
+                } else {
+                    tfEDstrength.setError("Insert > 0 Number");
+                }
+
+                if (field.length() == 0){
+                    tfEDstrength.setHelperText("");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void levelWatcher() {
+        tietEDlevel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String field = tietEDlevel.getText().toString();
+                if (!specialCharsNumber(field)){
+                    tfEDlevel.setHelperText("Looks Good!");
+                } else {
+                    tfEDlevel.setError("Insert > 0 Number");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
 }

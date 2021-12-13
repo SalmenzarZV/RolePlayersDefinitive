@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.diac.saj.roleplayersdefinitive.R;
@@ -34,7 +35,18 @@ public class CharacterActivity extends AppCompatActivity {
         rvCharacters.setAdapter(characterAdapter);
 
         LiveData<List<CharacterCR>> listaCharacters = cvm.getAllCharacter();
+
+
+
+
         listaCharacters.observe(this, characterAdapter::setCharacterList);
+        /*
+        long id;
+        for (CharacterCR ccr: listaCharacters.getValue()) {
+            id = ccr.roleclass.id;
+            Log.v("jamaica", ""+id);
+        }*/
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {

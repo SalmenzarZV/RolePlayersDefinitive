@@ -44,9 +44,10 @@ public class CharacterViewHolder extends RecyclerView.ViewHolder {
         tvCcharisma = itemView.findViewById(R.id.tvCcharisma);
         ivCharacter = itemView.findViewById(R.id.ivCharacter);
 
+        //TODO BUSCAR EN EL PALABRAS CODELAB EL METODO DIFICIL
         itemView.setOnClickListener(view -> {
-            Log.v("jamaica", String.valueOf(character.level));
-            Log.v("jamaica", character.name);
+            //Log.v("jamaica", String.valueOf(character.level));
+            //Log.v("jamaica", character.name);
             Intent intent = new Intent(itemView.getContext(), EditDeleteActivity.class);
             intent.putExtra("character", character);
             itemView.getContext().startActivity(intent);

@@ -2,15 +2,20 @@ package com.diac.saj.roleplayersdefinitive.view.adapter;
 
 import android.content.Context;
 
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.diac.saj.roleplayersdefinitive.R;
 import com.diac.saj.roleplayersdefinitive.model.entity.CharacterCR;
 import com.diac.saj.roleplayersdefinitive.model.entity.Race;
@@ -59,44 +64,50 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterViewHolder>{
     }
 
     private void putPhoto(CharacterViewHolder holder, RoleCharacter character) {
-        switch ((int) character.idclass) {
-            case 1:
-                holder.ivCharacter.setImageResource(R.drawable.barbarian);
-                break;
-            case 2:
-                holder.ivCharacter.setImageResource(R.drawable.bard);
-                break;
-            case 3:
-                holder.ivCharacter.setImageResource(R.drawable.cleric);
-                break;
-            case 4:
-                holder.ivCharacter.setImageResource(R.drawable.druid);
-                break;
-            case 5:
-                holder.ivCharacter.setImageResource(R.drawable.fighter);
-                break;
-            case 6:
-                holder.ivCharacter.setImageResource(R.drawable.monk);
-                break;
-            case 7:
-                holder.ivCharacter.setImageResource(R.drawable.paladin);
-                break;
-            case 8:
-                holder.ivCharacter.setImageResource(R.drawable.ranger);
-                break;
-            case 9:
-                holder.ivCharacter.setImageResource(R.drawable.rogue);
-                break;
-            case 10:
-                holder.ivCharacter.setImageResource(R.drawable.sorcerer);
-                break;
-            case 11:
-                holder.ivCharacter.setImageResource(R.drawable.warlock);
-                break;
-            case 12:
-                holder.ivCharacter.setImageResource(R.drawable.wizard);
-                break;
+        if (character.image == null) {
+            switch ((int) character.idclass) {
+                case 1:
+                    holder.ivCharacter.setImageResource(R.drawable.barbarian);
+                    break;
+                case 2:
+                    holder.ivCharacter.setImageResource(R.drawable.bard);
+                    break;
+                case 3:
+                    holder.ivCharacter.setImageResource(R.drawable.cleric);
+                    break;
+                case 4:
+                    holder.ivCharacter.setImageResource(R.drawable.druid);
+                    break;
+                case 5:
+                    holder.ivCharacter.setImageResource(R.drawable.fighter);
+                    break;
+                case 6:
+                    holder.ivCharacter.setImageResource(R.drawable.monk);
+                    break;
+                case 7:
+                    holder.ivCharacter.setImageResource(R.drawable.paladin);
+                    break;
+                case 8:
+                    holder.ivCharacter.setImageResource(R.drawable.ranger);
+                    break;
+                case 9:
+                    holder.ivCharacter.setImageResource(R.drawable.rogue);
+                    break;
+                case 10:
+                    holder.ivCharacter.setImageResource(R.drawable.sorcerer);
+                    break;
+                case 11:
+                    holder.ivCharacter.setImageResource(R.drawable.warlock);
+                    break;
+                case 12:
+                    holder.ivCharacter.setImageResource(R.drawable.wizard);
+                    break;
+            }
+        } else {
+            Uri uri =  Uri.parse(character.image);
+            Glide.with(context).load(uri).into(holder.ivCharacter);
         }
+
     }
 
 

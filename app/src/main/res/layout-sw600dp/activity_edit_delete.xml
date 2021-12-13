@@ -4,51 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.AddActivity">
+    tools:context=".view.activity.EditDeleteActivity">
 
     <ScrollView
-        android:id="@+id/svADD"
+        android:id="@+id/svED"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btAdd"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/ivADDcharacter"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginStart="16dp"
+                android:id="@+id/ivEDcharacter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:contentDescription="@string/ivCharacter"
-                android:maxWidth="75dp"
-                android:maxHeight="75dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ImageContrastCheck"
-                tools:src="@drawable/ic_baseline_question_mark_24" />
+                tools:src="@tools:sample/avatars" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tfADDname"
+                android:id="@+id/tfEDname"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
                 android:hint="@string/Name"
+                android:minWidth="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ivADDcharacter"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivEDcharacter">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietADDname"
+                    android:id="@+id/tietEDname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLength="20"
@@ -57,21 +56,20 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tfADDlevel"
+                android:id="@+id/tfEDlevel"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:hint="@string/Lv"
                 android:minWidth="100dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tfEDname"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/ivADDcharacter"
-                app:layout_constraintTop_toBottomOf="@+id/tfADDname">
+                app:layout_constraintStart_toStartOf="@+id/tfEDname"
+                app:layout_constraintTop_toBottomOf="@+id/tfEDname">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietADDlevel"
+                    android:id="@+id/tietEDlevel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -81,32 +79,32 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
-                android:id="@+id/spADDclass"
+                android:id="@+id/spEDclass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:minHeight="48dp"
-                app:layout_constraintEnd_toStartOf="@+id/spADDrace"
+                app:layout_constraintEnd_toStartOf="@+id/spEDrace"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfADDlevel"
+                app:layout_constraintTop_toBottomOf="@+id/tfEDlevel"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Spinner
-                android:id="@+id/spADDrace"
+                android:id="@+id/spEDrace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/spADDclass"
-                app:layout_constraintTop_toBottomOf="@+id/tfADDlevel"
+                app:layout_constraintStart_toEndOf="@+id/spEDclass"
+                app:layout_constraintTop_toBottomOf="@+id/tfEDlevel"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tfADDcreation"
+                android:id="@+id/tfEDcreation"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -114,14 +112,14 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/Creation"
-                app:layout_constraintEnd_toStartOf="@+id/tfADDstate"
+                app:layout_constraintEnd_toStartOf="@+id/tfEDstate"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spADDclass"
+                app:layout_constraintTop_toBottomOf="@+id/spEDclass"
                 app:startIconDrawable="@drawable/ic_baseline_calendar_today_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietADDcreation"
+                    android:id="@+id/tietEDcreation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="date"
@@ -130,7 +128,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tfADDstate"
+                android:id="@+id/tfEDstate"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -139,11 +137,11 @@
                 android:layout_marginEnd="24dp"
                 android:hint="@string/State"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tfADDcreation"
-                app:layout_constraintTop_toBottomOf="@+id/spADDrace">
+                app:layout_constraintStart_toEndOf="@+id/tfEDcreation"
+                app:layout_constraintTop_toBottomOf="@+id/spEDrace">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietADDstate"
+                    android:id="@+id/tietEDstate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLength="10"
@@ -152,7 +150,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tfADDstrength"
+                android:id="@+id/tfEDstrength"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -160,12 +158,12 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/STR"
-                app:layout_constraintEnd_toStartOf="@+id/tfADDintelligence"
+                app:layout_constraintEnd_toStartOf="@+id/tfEDintelligence"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfADDcreation">
+                app:layout_constraintTop_toBottomOf="@+id/tfEDcreation">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietADDstrength"
+                    android:id="@+id/tietEDstrength"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -175,7 +173,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tfADDdexterity"
+                android:id="@+id/tfEDdexterity"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -183,12 +181,12 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/DEX"
-                app:layout_constraintEnd_toStartOf="@+id/tfADDwisdom"
+                app:layout_constraintEnd_toStartOf="@+id/tfEDwisdom"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfADDstrength">
+                app:layout_constraintTop_toBottomOf="@+id/tfEDstrength">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietADDdexterity"
+                    android:id="@+id/tietEDdexterity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -198,7 +196,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tfADDconstitution"
+                android:id="@+id/tfEDconstitution"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -206,12 +204,12 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/CON"
-                app:layout_constraintEnd_toStartOf="@+id/tfADDcharisma"
+                app:layout_constraintEnd_toStartOf="@+id/tfEDcharisma"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfADDdexterity">
+                app:layout_constraintTop_toBottomOf="@+id/tfEDdexterity">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietADDconstitution"
+                    android:id="@+id/tietEDconstitution"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -221,7 +219,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tfADDintelligence"
+                android:id="@+id/tfEDintelligence"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -230,11 +228,11 @@
                 android:layout_marginEnd="24dp"
                 android:hint="@string/INT"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tfADDstrength"
-                app:layout_constraintTop_toBottomOf="@+id/tfADDcreation">
+                app:layout_constraintStart_toEndOf="@+id/tfEDstrength"
+                app:layout_constraintTop_toBottomOf="@+id/tfEDcreation">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietADDintelligence"
+                    android:id="@+id/tietEDintelligence"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -244,7 +242,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tfADDwisdom"
+                android:id="@+id/tfEDwisdom"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -253,11 +251,11 @@
                 android:layout_marginEnd="24dp"
                 android:hint="@string/WIS"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tfADDdexterity"
-                app:layout_constraintTop_toBottomOf="@+id/tfADDintelligence">
+                app:layout_constraintStart_toEndOf="@+id/tfEDdexterity"
+                app:layout_constraintTop_toBottomOf="@+id/tfEDintelligence">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietADDwisdom"
+                    android:id="@+id/tietEDwisdom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -267,7 +265,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tfADDcharisma"
+                android:id="@+id/tfEDcharisma"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -276,11 +274,11 @@
                 android:layout_marginEnd="24dp"
                 android:hint="@string/CHA"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tfADDconstitution"
-                app:layout_constraintTop_toBottomOf="@+id/tfADDdexterity">
+                app:layout_constraintStart_toEndOf="@+id/tfEDconstitution"
+                app:layout_constraintTop_toBottomOf="@+id/tfEDdexterity">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietADDcharisma"
+                    android:id="@+id/tietEDcharisma"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -293,14 +291,24 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btAdd"
+        android:id="@+id/btEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/add"
+        android:text="@string/delete"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/btEdit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

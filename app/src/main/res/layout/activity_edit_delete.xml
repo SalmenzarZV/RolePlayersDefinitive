@@ -50,6 +50,7 @@
                     android:id="@+id/tietEDname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="20"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -72,6 +73,8 @@
                     android:id="@+id/tietEDlevel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="2"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -113,12 +116,14 @@
                 app:layout_constraintEnd_toStartOf="@+id/tfEDstate"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spEDclass">
+                app:layout_constraintTop_toBottomOf="@+id/spEDclass"
+                app:startIconDrawable="@drawable/ic_baseline_calendar_today_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tietEDcreation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="date"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -140,6 +145,7 @@
                     android:id="@+id/tietEDstate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="10"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -161,6 +167,8 @@
                     android:id="@+id/tietEDstrength"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="2"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -182,6 +190,8 @@
                     android:id="@+id/tietEDdexterity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="2"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -203,6 +213,8 @@
                     android:id="@+id/tietEDconstitution"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="2"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -224,6 +236,8 @@
                     android:id="@+id/tietEDintelligence"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="2"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -245,6 +259,8 @@
                     android:id="@+id/tietEDwisdom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="2"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -266,6 +282,8 @@
                     android:id="@+id/tietEDcharisma"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="2"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
